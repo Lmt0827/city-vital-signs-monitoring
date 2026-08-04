@@ -14,6 +14,15 @@
 
   var intlColor = '#7c3aed';
 
+  // Store chart instances globally for lazy resize
+  var charts = [];
+  window.__chartInstances = charts;
+  window.resizeAllCharts = function() {
+    charts.forEach(function(c) {
+      if (c && typeof c.resize === 'function') c.resize();
+    });
+  };
+
   // ========== Chart 1: Domestic Timeline ==========
   var chart1 = echarts.init(document.getElementById('chart-timeline-domestic'), null, { renderer: 'svg' });
   chart1.setOption({
@@ -375,15 +384,18 @@
     }]
   });
 
-  // ========== Resize ==========
+  // ========== Register & Resize ==========
+  charts.push(chart1, chart2, chart3, chart4, chart5, chart6, chart7);
+
   window.addEventListener('resize', function() {
-    chart1.resize();
-    chart2.resize();
-    chart3.resize();
-    chart4.resize();
-    chart5.resize();
-    chart6.resize();
-    chart7.resize();
+    charts.forEach(function(c) { if (c) c.resize(); });
   });
+
+  // Also resize when fonts finish loading (dimensions may shift)
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function() {
+      charts.forEach(function(c) { if (c) c.resize(); });
+    });
+  }
 
 })();

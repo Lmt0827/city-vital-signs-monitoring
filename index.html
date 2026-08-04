@@ -1563,6 +1563,11 @@ function switchTab(tabName) {
   document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
   document.getElementById(tabName).classList.add('active');
   document.querySelector('[data-tab="' + tabName + '"]').classList.add('active');
+  // Resize charts when visualization tab becomes visible
+  if (tabName === 'visualization' && window.resizeAllCharts) {
+    setTimeout(function() { window.resizeAllCharts(); }, 50);
+    setTimeout(function() { window.resizeAllCharts(); }, 300);
+  }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
