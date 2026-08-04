@@ -1563,8 +1563,8 @@ function switchTab(tabName) {
   document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
   document.getElementById(tabName).classList.add('active');
   document.querySelector('[data-tab="' + tabName + '"]').classList.add('active');
-  // Resize charts when visualization tab becomes visible
-  if (tabName === 'visualization' && window.resizeAllCharts) {
+  // Resize all charts when any tab becomes visible (charts init with 0 size in hidden tabs)
+  if (window.resizeAllCharts) {
     setTimeout(function() { window.resizeAllCharts(); }, 50);
     setTimeout(function() { window.resizeAllCharts(); }, 300);
   }
