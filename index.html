@@ -527,8 +527,9 @@ sup a:hover { text-decoration: underline; }
       <div class="hero-meta-item"><strong>11</strong> 项地方政策</div>
       <div class="hero-meta-item"><strong>13</strong> 项国外政策</div>
     </div>
-    <div style="margin-top: 20px;">
-      <button class="pdf-btn" onclick="window.print()">下载PDF报告</button>
+    <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
+      <a class="pdf-btn" href="city-vital-signs-report.pdf" download style="text-decoration:none; display:inline-flex; align-items:center;">下载PDF报告</a>
+      <button class="pdf-btn" onclick="window.print()" style="background:#1e293b;">打印此页</button>
     </div>
   </div>
 </header>
